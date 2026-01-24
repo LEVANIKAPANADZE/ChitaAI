@@ -10,8 +10,11 @@ export default function Page() {
 
   const [messages, setMessages] = useState("");
   const [chat, setChat] = useState<chatTypes[]>([]);
+  const [loading, setLoading] = useState(false);
 
   async function getAnswer() {
+    setLoading(true);
+
     const newChat = [...chat, { role: "user" as const, content: messages }];
     setChat(newChat);
 
@@ -29,10 +32,14 @@ export default function Page() {
       { role: "assistant" as const, content: assistantContent },
     ];
     setChat(newChat2);
+
+    setLoading(false);
   }
 
   return (
     <div>
+      <h1>ChitaAI</h1>
+
       <div>
         {chat.map((element, i) => (
           <div key={i}>
@@ -40,6 +47,8 @@ export default function Page() {
             {element.content}
           </div>
         ))}
+
+        {loading && <div>Typing...</div>}
       </div>
 
       <div>

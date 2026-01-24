@@ -3,33 +3,53 @@
 import { useState } from "react";
 
 export default function Page() {
+  type chatTypes = {
+    role: "user" | "assistant";
+    content: string;
+  };
+
   const [messages, setMessages] = useState("");
-  const [reply, setReply] = useState("");
+  const [chat, setChat] = useState<chatTypes[]>([]);
 
   async function getAnswer() {
+    const newChat = [...chat, { role: "user" as const, content: messages }];
+    setChat(newChat);
+
     const res = await fetch("/api/chat", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        messages: [{ role: "user", content: messages }],
-      }),
+      body: JSON.stringify({ messages: newChat }),
     });
 
     const data = await res.json();
-    setReply(data.choices?.[0]?.message?.content || "No reply");
+    const assistantContent = data.choices?.[0]?.message?.content || "No reply";
+
+    const newChat2 = [
+      ...newChat,
+      { role: "assistant" as const, content: assistantContent },
+    ];
+    setChat(newChat2);
   }
 
   return (
     <div>
-      <textarea
-        value={messages}
-        onChange={(e) => setMessages(e.target.value)}
-        placeholder="Ask something..."
-      />
+      <div>
+        {chat.map((element, i) => (
+          <div key={i}>
+            <b>{element.role === "assistant" ? "ChitaAI" : "You"}:</b>{" "}
+            {element.content}
+          </div>
+        ))}
+      </div>
 
-      <button onClick={getAnswer}>Send</button>
-
-      <pre>{reply}</pre>
+      <div>
+        <textarea
+          value={messages}
+          onChange={(e) => setMessages(e.target.value)}
+          placeholder="Ask something..."
+        />
+        <button onClick={getAnswer}>Send</button>
+      </div>
     </div>
   );
 }

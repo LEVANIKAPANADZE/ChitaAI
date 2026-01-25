@@ -38,9 +38,11 @@ export default function Page() {
 
   return (
     <div>
-      <h1>ChitaAI</h1>
+      <header>
+        <h1>ChitaAI</h1>
+      </header>
 
-      <div>
+      <main>
         {chat.map((element, i) => (
           <div key={i}>
             <b>{element.role === "assistant" ? "ChitaAI" : "You"}:</b>{" "}
@@ -49,16 +51,16 @@ export default function Page() {
         ))}
 
         {loading && <div>Typing...</div>}
-      </div>
+      </main>
 
-      <div>
+      <footer>
         <textarea
           value={messages}
           onChange={(e) => setMessages(e.target.value)}
           placeholder="Ask something..."
         />
         <button onClick={getAnswer}>Send</button>
-      </div>
+      </footer>
     </div>
   );
 }

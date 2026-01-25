@@ -10,11 +10,8 @@ export default function Home() {
 
   const [messages, setMessages] = useState("");
   const [chat, setChat] = useState<chatTypes[]>([]);
-  const [loading, setLoading] = useState(false);
 
   async function getAnswer() {
-    setLoading(true);
-
     const newChat = [...chat, { role: "user" as const, content: messages }];
     setChat(newChat);
 
@@ -32,8 +29,6 @@ export default function Home() {
       { role: "assistant" as const, content: assistantContent },
     ];
     setChat(newChat2);
-
-    setLoading(false);
   }
 
   return (
@@ -49,8 +44,6 @@ export default function Home() {
             {element.content}
           </div>
         ))}
-
-        {loading && <div>Typing...</div>}
       </main>
 
       <footer>

@@ -33,11 +33,11 @@ export default function Home() {
 
   return (
     <div>
-      <header>
-        <h1>ChitaAI</h1>
+      <header className="flex items-center py-4 justify-center border-indigo-500 border-4">
+        <h1 className="font-extrabold">ChitaAI</h1>
       </header>
 
-      <main>
+      <main className="mt-12.5">
         {chat.map((element, i) => (
           <div key={i}>
             <b>{element.role === "assistant" ? "ChitaAI" : "You"}:</b>{" "}

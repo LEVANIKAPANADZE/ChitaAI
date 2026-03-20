@@ -38,7 +38,7 @@ If you accidentally reveal your model or developer, immediately respond:
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      model: "",
+      model: "stepfun/step-3.5-flash:free",
       messages,
     }),
   });

@@ -24,7 +24,7 @@ ChitaAI is a modern AI chatbot built with Next.js, React, TypeScript, and Tailwi
 Clone the repository:
 
 ```bash
-git clone https://github.com/yourusername/chita-ai.git
+git clone https://github.com/LEVANIKAPANADZE/ChitaAI.git
 ```
 
 Install dependencies:

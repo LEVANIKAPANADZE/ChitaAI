@@ -65,6 +65,4 @@ Open:
 http://localhost:3000
 ```
 
-## 🎯 About
 
-ChitaAI was created as a personal AI assistant project focused on combining modern web technologies with a unique terminal-style user experience.

@@ -63,6 +63,7 @@ Open:
 
 ```text
 http://localhost:3000
+or your domain
 ```
 
 
